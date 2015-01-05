@@ -1,4 +1,4 @@
 Puppet module for Opsweekly
 ===========================
 
-#busy with making rmp pachkage Opsweekly
+#busy with making rpm pachkage Opsweekly
