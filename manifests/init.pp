@@ -1,6 +1,6 @@
 #Class opsweekly
 #
-#
+#including some classes for opsweekly
 class opsweekly {
   
   include opsweekly::install
@@ -11,4 +11,4 @@ class opsweekly {
   Class['opsweekly::install'] ->
   Class['opsweekly::config'] ->
   Class['opsweekly::service']
- }
+}

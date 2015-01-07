@@ -1,17 +1,20 @@
 #Class opsweekly
 #
-#
+# opsweekly apache file and php54 centos SCL file 
 class opsweekly::config {
-  exec  {'php5.4':
-    command  => 'source /opt/rh/php54/enable && rm /etc/httpd/conf.d/php.conf -Rf',
-    path     => '/usr/bin',
-    provider =>  shell,  
+
+  file { '/etc/profile.d/enablephp54.sh':
+    ensure  => file,
+    content => template('opsweekly/enablephp54.sh.erb'),
+    mode    => '0755',
   }
 
-file  { '/etc/httpd/conf.d/opsweekly.conf':
+  file  { '/etc/httpd/conf.d/opsweekly.conf':
     ensure  => file,
     content => template('opsweekly/opsweekly.conf.erb'),
-    notify  => Service['httpd'],
   }
 
+  file  { '/etc/httpd/conf.d/php.conf':
+    ensure  => absent,
+  }
 }
