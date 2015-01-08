@@ -17,4 +17,10 @@ class opsweekly::config {
   file  { '/etc/httpd/conf.d/php.conf':
     ensure  => absent,
   }
+  
+  file  { '/opt/opsweekly/phplib/config.php':
+    ensure  => file,
+    content => template('opsweekly/config.php.erb')
+  }
+
 }
