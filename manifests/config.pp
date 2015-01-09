@@ -19,9 +19,4 @@ class opsweekly::config {
     content => template('opsweekly/config.php.erb')
   }
 
-  file  { '/opt/opsweekly/lib/css/wysiwyg-color.css':
-    ensure  => file,
-    content => template('opsweekly/wysiwyg-color.css.erb'),
-  }
-
 }
