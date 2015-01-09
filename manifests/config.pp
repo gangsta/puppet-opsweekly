@@ -13,14 +13,15 @@ class opsweekly::config {
     ensure  => file,
     content => template('opsweekly/opsweekly.conf.erb'),
   }
-
-  file  { '/etc/httpd/conf.d/php.conf':
-    ensure  => absent,
-  }
   
   file  { '/opt/opsweekly/phplib/config.php':
     ensure  => file,
     content => template('opsweekly/config.php.erb')
+  }
+
+  file  { '/opt/opsweekly/lib/css/wysiwyg-color.css':
+    ensure  => file,
+    content => template('opsweekly/wysiwyg-color.css.erb'),
   }
 
 }
