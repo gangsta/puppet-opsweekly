@@ -1,7 +1,7 @@
 <?php
 
-$mysql_user = "root";
-$mysql_pass = "";
+$mysql_user = "opsweekly";
+$mysql_pass = "opsweekly";
 
 $email_from_domain = "inuits.eu";
 
@@ -11,7 +11,7 @@ function getUsername() {
 }
 
 $teams = array(
-"192.168.33.10" => array(
+"192.168.22.10" => array(
 "root_url" => "/opsweekly",
 "display_name" => "Ops",
 "database" => "opsweekly",
@@ -22,4 +22,4 @@ $teams = array(
 $search_results_per_page = 25;
 $error_log_file = "/var/log/httpd/opsweekly_debug.log";
 $dev_fqdn = "/(\w+).vms.mycompany.com/";
-$prod_fqdn = "192.168.33.10";
+$prod_fqdn = "192.168.22.10";

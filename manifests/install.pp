@@ -4,11 +4,6 @@
 class opsweekly::install {
 
   package {'opsweekly':
-    ensure  => present,
     require => Yumrepo['opsweekly'],
-  }
-
-  package {'httpd':
-    ensure  => present,
   }
 }
