@@ -3,23 +3,57 @@
 $mysql_user = "opsweekly_user";
 $mysql_pass = "opsweekly";
 
-$email_from_domain = "inuits.eu";
+$email_from_domain = "Mycompany.eu";
 
 function getUsername() {
   // Use the PHP_AUTH_USER header which contains the username when Basic auth is used.
-  return ['PHP_AUTH_USER'];
+  return $_SERVER['PHP_AUTH_USER'];
 }
 
 $teams = array(
-"192.168.22.10" => array(
-"root_url" => "/opsweekly",
-"display_name" => "Ops",
-"database" => "opsweekly",
-),
+    "192.168.22.10" => array(
+        "root_url" => "/opsweekly",
+        "display_name" => "Ops",
+        "email_report_to" => "yourmail@mail.org",
+        "database" => "opsweekly",
+        "weekly_hints" => array("github"),
+        "oncall" => array(
+            "provider" => "logstash",
+            "provider_options" => array(
+                "notification-user-map" => array(
+                    "username" => "Username",
+                ),
+             ),
+            "timezone" => "Europe/Brussels",
+            "start" => "monday 08:00",
+            "end" => "monday 08:00",
+        ),
+    ),
+ );
+
+$weekly_providers = array(
+    "github" => array(
+        "display_name" => "Github Activity",
+        "lib" => "/opt/opsweekly/providers/weekly/github.php",
+        "class" => "GithubHints",
+        "options" => array(
+            "github_url" => "https://github.com/Yourcompany",
+        ),
+    ),
 );
 
+$oncall_providers = array(
+    "logstash" => array(
+        "display_name" => "Logstash",
+        "lib" => "/opt/opsweekly/providers/oncall/logstash.php",
+        "options" => array(
+            "base_url" => "logstash:9200",
+        ),
+    ),
+);
 
 $search_results_per_page = 25;
 $error_log_file = "/var/log/httpd/opsweekly_debug.log";
 $dev_fqdn = "/(\w+).vms.mycompany.com/";
 $prod_fqdn = "192.168.22.10";
+//$prod_fqdn = "<%= scope.lookupvar('::fqdn') %>";
